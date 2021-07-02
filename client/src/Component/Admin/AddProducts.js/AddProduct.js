@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useForm} from "react-hook-form";
 
 const AddProduct = () => {
     const {register, handleSubmit} = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = product => {
+        fetch("http://localhost:5000/addProduct", {
+            method : 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(product)
+        })
+        // .then(res => res.JSON())
+        .then(res => console.log(res))
+    };
+
     return (
-        <div class="container mx-auto">
+        <div className="container mx-auto">
             <form onSubmit={
                 handleSubmit(onSubmit)
             }>
