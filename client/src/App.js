@@ -4,6 +4,7 @@ import Login from "./Component/Login/Login";
 import Navbar from './Component/Nav/Navbar';
 import AddProduct from "./Component/Admin/AddProducts.js/AddProduct";
 import AddAdmin from "./Component/Admin/AddAdmin/AddAdmin";
+import Item from "./Component/Items/Item";
 
 function App() {
     return (
@@ -22,6 +23,9 @@ function App() {
                     </Route>
                     <Route path='/addProduct'>
                         <AddProduct />
+                    </Route>
+                    <Route path='/item/:category'>
+                        <Item />
                     </Route>
                     <Route path="/">
                         <Home />

@@ -12,18 +12,23 @@ const AddAdmin = () => {
             },
             body: JSON.stringify(adminEmail)
         })
-            .then(res => console.log("adding admin response from server:",res))
+            .then(res => console.log("adding admin response from server:", res))
     };
     return (
-        <div  className="grid grid-cols-4">
-        <DashBoard />
-        <div className="p-5 col-span-3">
+        <div className="grid grid-cols-4">
+            <DashBoard />
+            <div className="p-5 col-span-3">
                 <form onSubmit={
                     handleSubmit(onSubmit)
                 }>
-                    <input className="border border-transparent h-10 w-44 p-4 m-3  rounded shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" placeholder="Add an Email" {...register("adminEmail")} />
+                    <div className="p-2">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-price">
+                            Add an email
+                        </label>
+                        <input className="border border-1 w-96 px-2 py-3 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" placeholder="Add an Email" {...register("adminEmail")} />
+                    </div>
                     <br />
-                    <button className="bg-indigo-500 p-2 m-3  text-white hover:bg-white hover:text-indigo-500 border rounded" type="submit">Submit</button>
+                    <button className="bg-indigo-500 py-2 px-3 mx-2 text-white hover:bg-white hover:text-indigo-500 border rounded" type="submit">Submit</button>
                 </form>
             </div>
         </div>
