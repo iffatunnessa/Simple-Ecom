@@ -5,9 +5,7 @@ import Navbar from './Component/Nav/Navbar';
 import AddProduct from "./Component/Admin/AddProducts.js/AddProduct";
 import AddAdmin from "./Component/Admin/AddAdmin/AddAdmin";
 import Item from "./Component/Items/Item";
-import {
-    RecoilRoot,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 function App() {
     return (

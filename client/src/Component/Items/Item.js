@@ -3,13 +3,8 @@ import { useParams } from 'react-router-dom';
 import ItemIndividual from './ItemIndividual';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { cartAtom } from '../Cart/CartState';
 
 const Item = () => {
-    const setCart = useSetRecoilState(cartAtom);
-    const newa = ['new','new2'];
-    setCart(newa);
     const [item, setItem] = useState([]);
     const { category } = useParams();
     console.log(category);
