@@ -35,9 +35,8 @@ const Login = () => {
                     marginTop: "100px"
                 }
             }>
-                <hr className='solid'/>
                 <button onClick={handleGoogleSignIn}
-                    className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-red-500 hover:bg-white mt-4 lg:mt-0">
+                    className="inline-block px-4 py-2 border border-2 rounded text-white bg-indigo-400 border-indigo hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
                     <FontAwesomeIcon icon={faGooglePlusG}/>
                     Sign in with Google
                 </button>

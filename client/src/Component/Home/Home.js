@@ -4,7 +4,7 @@ import Item from '../Items/Item';
 const Home = () => {
     return (
         <>
-        <Item />
+            <Item />
         </>
     );
 };

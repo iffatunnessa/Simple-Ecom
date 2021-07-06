@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { cartAtom } from '../../Cart/CartState';
 import DashBoard from '../../Dashboad/DashBoard';
 
 const AddProduct = () => {
@@ -33,7 +35,6 @@ const AddProduct = () => {
         setImageFile(file);
         console.log(file);
     }
-
     return (
         <div className="grid grid-cols-4">
             <DashBoard />
@@ -57,8 +58,8 @@ const AddProduct = () => {
                                     <option>laptop</option>
                                     <option>phone</option>
                                     <option>mouse</option>
-                                    <option>keyboards</option>
-                                    <option>books</option>
+                                    <option>keyboard</option>
+                                    <option>book</option>
                                     <option>coffee</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -85,7 +86,6 @@ const AddProduct = () => {
                             <input className="border border-1 w-full px-2 py-3  rounded shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" type="file" id="image" name='files' onChange={handleFileChange} required />
                         </div>
                         <br />
-                        {/*  {...register("image")}*/}
                     </div>
                     <button className="bg-indigo-500 py-2 px-3  m-3 text-white hover:bg-white hover:text-indigo-500 border rounded" type="submit">Submit</button>
                 </form>
