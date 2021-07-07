@@ -1,9 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useRecoilValue } from 'recoil';
 import DashBoard from '../../Dashboad/DashBoard';
+import { isAdmin } from '../AdminState';
 
 const AddAdmin = () => {
     const { register, handleSubmit } = useForm();
+    const admin = useRecoilValue(isAdmin);
     const onSubmit = adminEmail => {
         fetch("http://localhost:5000/addAdmin", {
             method: 'POST',

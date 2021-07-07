@@ -7,7 +7,6 @@ const DashBoard = () => {
             <div className ="grid grid-col-1">
             <Link to="/addProduct" className="hover:bg-indigo-500 p-2 h-10">Add Products</Link>
             <Link  to="/addAdmin" className="hover:bg-indigo-500 p-2 h-10">Add An Admin</Link>
-            <Link className="hover:bg-indigo-500 p-2 h-10">Add Admin</Link>
             </div>
         </div>
 

@@ -9,6 +9,7 @@ import AddProduct from "./Component/Admin/AddProducts.js/AddProduct";
 import AddAdmin from "./Component/Admin/AddAdmin/AddAdmin";
 import Item from "./Component/Items/Item";
 import UserCart from "./Component/User/UserCart";
+import SaveCart from "./Component/Nav/SaveCart";
 
 export const UserContext = createContext();
 
@@ -43,6 +44,7 @@ function App() {
                             <Home />
                         </Route>
                     </Switch>
+                    <SaveCart />
                 </div>
             </Router>
         </RecoilRoot>

@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../firebaseConfig';
 import { useHistory, useLocation } from 'react-router';
-import { loginState } from '../Login/LoginState';
-import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faGooglePlusG} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGooglePlusG } from '@fortawesome/free-brands-svg-icons'
 import { UserContext } from '../../App';
+import { useRecoilState } from 'recoil';
+import { isAdmin } from '../Admin/AdminState';
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -16,10 +16,10 @@ if (!firebase.apps.length) {
 }
 
 const Login = () => {
-        const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-        const history = useHistory();
-        const location = useLocation();
-        let { from } = location.state || { from: { pathname: "/" } };
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const history = useHistory();
+    const location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
 
     const handleGoogleSignIn = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -29,7 +29,7 @@ const Login = () => {
             const user = result.user;
             console.log(result, result.user);
             const { displayName, email, photoURL } = result.user;
-            const signedInUser = { displayName, email, photoURL };  
+            const signedInUser = { displayName, email, photoURL };
             setLoggedInUser(signedInUser);
             history.replace(from);
 
@@ -43,6 +43,7 @@ const Login = () => {
     }
     return (
         <div>
+
             <div style={
                 {
                     textAlign: 'center',
@@ -51,7 +52,7 @@ const Login = () => {
             }>
                 <button onClick={handleGoogleSignIn}
                     className="inline-block px-4 py-2 border border-2 rounded text-white bg-indigo-400 border-indigo hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
-                    <FontAwesomeIcon icon={faGooglePlusG}/>
+                    <FontAwesomeIcon icon={faGooglePlusG} />
                     Sign in with Google
                 </button>
             </div>
