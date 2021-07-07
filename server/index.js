@@ -37,7 +37,6 @@ client.connect(err => {
                 console.log(er);
                 return res.status(500).send({ msg: 'failed to upload image' });
             }
-
             const newImg = fs.readFileSync(filePath);
             const encodedImage = newImg.toString('base64');
             const imageFile = {

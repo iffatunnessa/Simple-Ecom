@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const { photoURL, email } = loggedInUser;
+
     return (
         <nav className="flex items-center justify-between flex-wrap bg-indigo-500 p-3">
             <div className="flex items-center flex-shrink-0 text-white mr-6 px-6">
@@ -18,11 +24,11 @@ const Navbar = () => {
                     <Link to="/home" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:bg-indigo-300 px-3 py-1 rounded mr-4">
                         Home
                     </Link>
-                    <div class="group inline-block relative">
-                        <Link  className="block mt-4 lg:inline-block lg:mt-0 text-white hover:bg-indigo-300 px-3 py-1 rounded mr-4">
+                    <div className="group inline-block relative">
+                        <Link className="block mt-4 lg:inline-block lg:mt-0 text-white hover:bg-indigo-300 px-3 py-1 rounded mr-4">
                             Items
                         </Link>
-                        <ul class="absolute hidden text-gray-700 pt-1 group-hover:block">
+                        <ul className="absolute hidden text-gray-700 pt-1 group-hover:block">
                             <Link className="bg-indigo-50 hover:bg-indigo-100 py-2 px-4 block whitespace-no-wrap" to={"/item/laptop"}>Laptop</Link>
                             <Link className="bg-indigo-50 hover:bg-indigo-100 py-2 px-4 block whitespace-no-wrap" to={"/item/phone"}>Phone</Link>
                             <Link className="bg-indigo-50 hover:bg-indigo-100 py-2 px-4 block whitespace-no-wrap" to={"/item/mouse"}>Mouse</Link>
@@ -35,8 +41,24 @@ const Navbar = () => {
                         Admin
                     </Link>
                 </div>
-                <div>
-                    <Link to="/login" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">Login</Link>
+                <div className="flex">
+                    <div>
+                        <Link to="/cart" className="text-xl px-4 py-6 text-white" >
+                            <span class="animate-ping absolute inline-flex h-6 w-7 rounded-full bg-purple-400 opacity-75"></span>
+                            <FontAwesomeIcon icon={faShoppingCart} />
+                            <span class="relative inline-flex rounded-full h-4 w-4 bg-red-400 text-xs">
+                                <span className='px-1'>1</span>
+                            </span>
+                        </Link>
+                    </div>
+                    <div>
+                        {
+                            email ?
+                                <img className="user-photo h-10 w-10 rounded-full" src={photoURL} alt="" />
+                                :
+                                <Link to="/login" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">Login</Link>
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
