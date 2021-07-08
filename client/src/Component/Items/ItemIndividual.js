@@ -1,16 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { cartState, addToCart, updateCart, deleteFromCart } from '../Cart/CartState';
 import { UserContext } from '../../App';
+import { oldUserState } from '../User/UserState';
 
 const ItemIndividual = ({ item, isCart, quantityCart }) => {
+    const user = useRecoilValue(oldUserState);
     const { productName, price, details, imageFile, _id } = item;
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [cart, setCart] = useRecoilState(cartState);
     const [quantityError, setQuantityError] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [quantityFromCart, setQuantityFromCart] = useState(quantityCart);
+    const [showed, setShowed] = useState(false);
     const email = loggedInUser.email;
+
     const handleAddToCart = (product) => {
         const { productName, _id, price } = product;
         const productDetails = {

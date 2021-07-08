@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { UserContext } from '../../App';
 import { addCartInDatabase, cartState, updateCartInDb } from '../Cart/CartState';
 import { oldUserState } from '../User/UserState';
@@ -8,13 +8,8 @@ import { oldUserState } from '../User/UserState';
 const SaveCart = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const cart = useRecoilValue(cartState);
-    const [user, setUser]= useRecoilState(oldUserState); 
     const email = loggedInUser.email;
-    useEffect(() => {
-        fetch(`http://localhost:5000/getEmail?email=${email}`)
-            .then(res => res.json())
-            .then(data => setUser(data))
-    }, [email])
+    const user = useRecoilValue(oldUserState); 
 
     const saveToDatabase = (cart, email) => {
         if(user){

@@ -5,7 +5,7 @@ export const cartState = atom({
   default: [],
 });
 
-export const addToCart = (cart, product, quantity,email) => {
+export const addToCart = (cart, product, quantity, email) => {
   const newCartList = [...cart];
   const productIndex = cart.findIndex(newProduct => newProduct.product._id === product._id);
 
@@ -76,16 +76,23 @@ export const addCartInDatabase = (cart, email) => {
 }
 
 export const updateCartInDb = (cart, email) => {
- 
   const userCart = {
     cart: cart,
     email: email
   };
-   console.log(userCart);
+  console.log(userCart);
   fetch(`http://localhost:5000/updateCart?email=${email}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ userCart })
+  })
+    .then(res => res.json())
+    .then(data => console.log(data))
+}
+
+export const deleteCartFromDb = (email) => {
+  fetch(`http://localhost:5000/deleteCart?email=${email}`, {
+    method: 'DELETE',
   })
     .then(res => res.json())
     .then(data => console.log(data))

@@ -24,6 +24,7 @@ client.connect(err => {
     const productCollection = client.db("TwursTechShop").collection("product");
     const adminCollection = client.db("TwursTechShop").collection("admin");
     const cartCollection = client.db("TwursTechShop").collection("userCart");
+    const checkoutCollection = client.db("TwursTechShop").collection("checkout");
     //post 
     app.post('/addProduct', (req, res) => {
         const productName = req.body.productName;
@@ -79,6 +80,18 @@ client.connect(err => {
         console.log('add', newItem);
     })
 
+    app.post('/checkout', (req, res) => {
+        const newItem = req.body;
+        console.log(newItem);
+        checkoutCollection.insertOne(newItem)
+            .then(result => {
+                console.log("inserted count", result.insertedCount)
+                res.send(result.insertedCount > 0)
+                console.log('res', result);
+            })
+        console.log('add', newItem);
+    })
+
     //get
     app.get('/item/:category', (req, res) => {
         productCollection.find({ category: req.params.category })
@@ -119,6 +132,15 @@ client.connect(err => {
             })
             .then(items => {
                 res.send(items);
+                console.log(items)
+            })
+    })
+    //delete 
+    app.delete('/deleteCart', (req, res) => {
+        console.log(req.query.email)
+        cartCollection.findOneAndDelete({ email: req.query.email })
+            .then(items => {
+                res.send("deleted cart",items);
                 console.log(items)
             })
     })

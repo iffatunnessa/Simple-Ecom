@@ -65,9 +65,13 @@ const Navbar = () => {
                         {
                             email &&
                             <Link to="/cart" className="text-xl px-4 py-6 text-white" >
-                                <span class="animate-ping absolute inline-flex h-6 w-7 rounded-full bg-purple-400 opacity-75"></span>
-                                <FontAwesomeIcon icon={faShoppingCart} />
-                                <span class="relative inline-flex rounded-full h-4 w-4 bg-red-400 text-xs">
+                                {
+                                    cart.length > 0 &&
+                                    <span className="animate-ping absolute inline-flex h-6 w-7 rounded-full bg-purple-400 opacity-75"></span>
+                              
+                                }
+                                 <FontAwesomeIcon icon={faShoppingCart} />
+                                <span className="relative inline-flex rounded-full h-4 w-4 bg-red-400 text-xs">
                                     <span className='px-1'>{cart.length}</span>
                                 </span>
                             </Link>

@@ -6,8 +6,6 @@ import { useHistory, useLocation } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGooglePlusG } from '@fortawesome/free-brands-svg-icons'
 import { UserContext } from '../../App';
-import { useRecoilState } from 'recoil';
-import { isAdmin } from '../Admin/AdminState';
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -27,12 +25,12 @@ const Login = () => {
             const credential = result.credential;
             const token = credential.accessToken;
             const user = result.user;
-            console.log(result, result.user);
-            const { displayName, email, photoURL } = result.user;
+            console.log(result, user);
+            const { displayName, email, photoURL } = user;
             const signedInUser = { displayName, email, photoURL };
             setLoggedInUser(signedInUser);
+            setToken();
             history.replace(from);
-
         }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -41,6 +39,14 @@ const Login = () => {
             console.log(errorCode, errorMessage, credential, email);
         });
     }
+    const setToken = () => {
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+           sessionStorage.setItem('token', idToken);
+        }).catch(function (error) {
+            // console.log(error)
+        });
+    }
+
     return (
         <div>
 
