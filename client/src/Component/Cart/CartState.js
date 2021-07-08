@@ -24,13 +24,40 @@ export const addToCart = (cart, product, quantity) => {
   return newCartList;
 };
 
+export const updateCart = (cart, product, quantity) => {
+  const newCartList = [...cart];
+  const productIndex = cart.findIndex(newProduct => newProduct.product._id === product._id);
+
+  if (productIndex >= 0) {
+    newCartList[productIndex] = {
+      ...cart[productIndex],
+      quantity: quantity,
+    };
+    console.log(cart, cart[productIndex].quantity)
+    return newCartList;
+  }
+
+  newCartList.push({
+    product: product,
+    quantity: quantity,
+  });
+  return newCartList;
+};
+
+export const deleteFromCart = (cart, product) => {
+  const newCartList = [...cart];
+  const productIndex = cart.findIndex(newProduct => newProduct.product._id === product._id);
+
+  newCartList.splice(productIndex, 1);
+  return newCartList;
+};
+
 export const cartCalculation=(cart)=>{
   let total = 0;
     cart.forEach(item => {
         const { product, quantity } = item;
         const { price} = product;
         total = total + price*quantity;
-        console.log(total);
     });
     return total;
 }

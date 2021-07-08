@@ -72,7 +72,7 @@ const Navbar = () => {
                     <div>
                         {
                             email ?
-                                <img className="user-photo h-10 w-10 rounded-full" src={photoURL} alt="" onClick={() => handleSignOut()} />
+                                <img className="border-2 border-gry-200 user-photo h-10 w-10 rounded-full" src={photoURL} alt="" onClick={() => handleSignOut()} />
                                 :
                                 <Link to="/login" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">Login</Link>
                         }

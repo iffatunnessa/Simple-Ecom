@@ -55,6 +55,7 @@ client.connect(err => {
             })
         })
     })
+
     app.post('/addAdmin', (req, res) => {
         const newItem = req.body;
         adminCollection.insertOne(newItem).then(result => {
@@ -72,7 +73,16 @@ client.connect(err => {
           .toArray((err, newItems) => {
             res.send(newItems);
           })
+    })
+
+    app.post('/admin', (req, res) => {
+        adminCollection.find({ adminEmail: req.body.email })
+          .toArray((err, admin) => {
+            console.log(admin);
+            res.send(admin.length > 0);
+          })
       })
+
 });
 
 
