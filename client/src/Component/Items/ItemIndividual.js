@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import React, { useContext, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { cartState, addToCart, updateCart, deleteFromCart } from '../Cart/CartState';
+import { UserContext } from '../../App';
 
 const ItemIndividual = ({ item, isCart, quantityCart }) => {
     const { productName, price, details, imageFile, _id } = item;
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [cart, setCart] = useRecoilState(cartState);
     const [quantityError, setQuantityError] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [quantityFromCart, setQuantityFromCart] = useState(quantityCart);
-
+    const email = loggedInUser.email;
     const handleAddToCart = (product) => {
-        const newCart = addToCart(cart, product, quantity);
+        const { productName, _id, price } = product;
+        const productDetails = {
+            _id: _id,
+            productName: productName,
+            price: price
+        }
+        const newCart = addToCart(cart, productDetails, quantity, email);
         setCart(newCart);
+        console.log(newCart)
     }
     const removeFromCart = (product) => {
         const newCart = deleteFromCart(cart, product);
@@ -49,11 +58,14 @@ const ItemIndividual = ({ item, isCart, quantityCart }) => {
     }
 
     return (
-        <div className=" max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2x1">
+        <div className=" max-w-4xl mx-auto my-2 bg-white rounded-xl shadow-md overflow-hidden md:max-w-2x1">
             <div className="md:flex">
-                <div className="md:flex-shrink-0">
-                    <img className="h-44 p-4 w-44 center object-cover md:w-44" src={`data:image/jpeg;base64,${imageFile.img}`} alt="Product" />
-                </div>
+                {!isCart &&
+                    <div className="md:flex-shrink-0">
+
+                        <img className="h-44 p-4 w-44 center object-cover md:w-44" src={`data:image/jpeg;base64,${imageFile.img}`} alt="Product" />
+                    </div>
+                }
                 <div className="p-8">
                     <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{productName}</div>
                     {
@@ -75,7 +87,7 @@ const ItemIndividual = ({ item, isCart, quantityCart }) => {
                             <button className="bg-indigo-500 py-2 px-3 text-white hover:bg-indigo-100 hover:text-indigo-500 border rounded" onClick={() => UpdateCart(item)}>
                                 Update
                             </button>
-                            :
+                            : loggedInUser.email &&
                             <button className="bg-indigo-500 py-2 px-3 text-white hover:bg-indigo-100 hover:text-indigo-500 border rounded" onClick={() => handleAddToCart(item)}>
                                 Add to Cart
                             </button>

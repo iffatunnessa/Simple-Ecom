@@ -23,6 +23,7 @@ client.connect(err => {
     console.log(err)
     const productCollection = client.db("TwursTechShop").collection("product");
     const adminCollection = client.db("TwursTechShop").collection("admin");
+    const cartCollection = client.db("TwursTechShop").collection("userCart");
     //post 
     app.post('/addProduct', (req, res) => {
         const productName = req.body.productName;
@@ -45,14 +46,14 @@ client.connect(err => {
                 img: Buffer(encodedImage, 'base64')
             }
             productCollection.insertOne({ productName, details, category, price, imageFile })
-            .then(result => {
-                fs.remove(filePath, error => {
-                    if (error) { console.log(error) }
-                    res.send(result.insertedCount > 0)
-                    console.log('res', result);
-                })
+                .then(result => {
+                    fs.remove(filePath, error => {
+                        if (error) { console.log(error) }
+                        res.send(result.insertedCount > 0)
+                        console.log('res', result);
+                    })
 
-            })
+                })
         })
     })
 
@@ -66,23 +67,61 @@ client.connect(err => {
         console.log('add', newItem);
     })
 
+    app.post('/addCartInDatabase', (req, res) => {
+        const newItem = req.body;
+        console.log(newItem)
+        cartCollection.insertOne(newItem)
+            .then(result => {
+                console.log("inserted count", result.insertedCount)
+                res.send(result.insertedCount > 0)
+                console.log('res', result);
+            })
+        console.log('add', newItem);
+    })
+
     //get
     app.get('/item/:category', (req, res) => {
-        console.log(req.params.category);
         productCollection.find({ category: req.params.category })
-          .toArray((err, newItems) => {
-            res.send(newItems);
-          })
+            .toArray((err, newItems) => {
+                res.send(newItems);
+            })
     })
 
     app.post('/admin', (req, res) => {
         adminCollection.find({ adminEmail: req.body.email })
-          .toArray((err, admin) => {
-            console.log(admin);
-            res.send(admin.length > 0);
-          })
-      })
+            .toArray((err, admin) => {
+                console.log(admin);
+                res.send(admin.length > 0);
+            })
+    })
 
+    app.get('/getEmail', (req, res) => {
+        cartCollection.find({ email: req.query.email })
+            .toArray((err, email) => {
+                console.log(email);
+                res.send(email.length > 0);
+            })
+    })
+
+    app.get('/getCart', (req, res) => {
+        cartCollection.find({ email: req.query.email })
+            .toArray((err, cart) => {
+                res.send(cart);
+            })
+    })
+
+    //update
+    app.patch('/updateCart', (req, res) => {
+        console.log(req.query.email, req.body.userCart.cart)
+        cartCollection.updateOne({ email: req.query.email },
+            {
+                $set: { cart: req.body.userCart.cart }
+            })
+            .then(items => {
+                res.send(items);
+                console.log(items)
+            })
+    })
 });
 
 

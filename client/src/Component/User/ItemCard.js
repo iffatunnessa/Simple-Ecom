@@ -5,7 +5,6 @@ const ItemCard = ({ item }) => {
     const { product, quantity } = item;
     const [isCart, setCart] = useState(true);
     const { productName, price, details, imageFile } = product;
-    console.log(product, quantity * price);
     return (
         <div>
             {

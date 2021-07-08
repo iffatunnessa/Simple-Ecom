@@ -6,6 +6,8 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../firebaseConfig';
+import { useRecoilValue } from 'recoil';
+import { cartState } from '../Cart/CartState';
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -16,6 +18,8 @@ if (!firebase.apps.length) {
 const Navbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const { photoURL, email } = loggedInUser;
+    const cart = useRecoilValue(cartState);
+
     const handleSignOut = () => {
         firebase.auth().signOut().then(() => {
             setLoggedInUser('');
@@ -64,7 +68,7 @@ const Navbar = () => {
                                 <span class="animate-ping absolute inline-flex h-6 w-7 rounded-full bg-purple-400 opacity-75"></span>
                                 <FontAwesomeIcon icon={faShoppingCart} />
                                 <span class="relative inline-flex rounded-full h-4 w-4 bg-red-400 text-xs">
-                                    <span className='px-1'>1</span>
+                                    <span className='px-1'>{cart.length}</span>
                                 </span>
                             </Link>
                         }
