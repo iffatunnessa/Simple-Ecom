@@ -15,7 +15,7 @@ const UserCart = () => {
     console.log(cart)
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/getCart?email=${email}`)
+            fetch(`https://boiling-crag-65640.herokuapp.com/getCart?email=${email}`)
                 .then(res => res.json())
                 .then(data => setCart(data[0].cart));
         }

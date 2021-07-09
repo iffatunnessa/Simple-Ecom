@@ -7,7 +7,7 @@ const AdminConfirm = () => {
     const [admin, setAdmin] = useRecoilState(isAdmin);
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     useEffect(() => {
-        fetch('http://localhost:5000/admin', {
+        fetch('https://boiling-crag-65640.herokuapp.com/admin', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ email: loggedInUser.email })

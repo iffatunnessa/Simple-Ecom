@@ -10,7 +10,7 @@ const Item = () => {
     const [isCart, setCart] = useState(false);
     const [quantity, setQuantity] = useState(1);
     useEffect(() => {
-        fetch(`http://localhost:5000/item/${category}`)
+        fetch(`https://boiling-crag-65640.herokuapp.com/item/${category}`)
             .then(res => res.json())
             .then(data => setItem(data))
     }, [category])

@@ -8,7 +8,7 @@ const AddAdmin = () => {
     const { register, handleSubmit } = useForm();
     const admin = useRecoilValue(isAdmin);
     const onSubmit = adminEmail => {
-        fetch("http://localhost:5000/addAdmin", {
+        fetch("https://boiling-crag-65640.herokuapp.com/addAdmin", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

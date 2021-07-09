@@ -14,7 +14,7 @@ const Orders = () => {
     console.log(email);
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/getCheckout?email=${email}`)
+            fetch(`https://boiling-crag-65640.herokuapp.com/getCheckout?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setOrders(data)

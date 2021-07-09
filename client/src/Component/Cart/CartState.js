@@ -67,7 +67,7 @@ export const addCartInDatabase = (cart, email) => {
     cart: cart,
     email: email
   };
-  fetch(`http://localhost:5000/addCartInDatabase`, {
+  fetch(`https://boiling-crag-65640.herokuapp.com/addCartInDatabase`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userCart)
@@ -81,7 +81,7 @@ export const updateCartInDb = (cart, email) => {
     email: email
   };
   console.log(userCart);
-  fetch(`http://localhost:5000/updateCart?email=${email}`, {
+  fetch(`https://boiling-crag-65640.herokuapp.com/updateCart?email=${email}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ userCart })
@@ -91,7 +91,7 @@ export const updateCartInDb = (cart, email) => {
 }
 
 export const deleteCartFromDb = (email) => {
-  fetch(`http://localhost:5000/deleteCart?email=${email}`, {
+  fetch(`https://boiling-crag-65640.herokuapp.com/deleteCart?email=${email}`, {
     method: 'DELETE',
   })
     .then(res => res.json())

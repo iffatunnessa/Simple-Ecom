@@ -19,7 +19,7 @@ const AddProduct = () => {
         formData.append('image', imageFile);
         console.log(formData);
 
-        fetch('http://localhost:5000/addProduct', {
+        fetch('https://boiling-crag-65640.herokuapp.com/addProduct', {
             method: 'POST',
             body: formData
         })

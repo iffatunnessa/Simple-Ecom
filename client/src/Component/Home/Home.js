@@ -11,7 +11,7 @@ const Home = () => {
   const [showed, setShowed] = useState(false);
   const email = loggedInUser.email;
   useEffect(() => {
-    fetch(`http://localhost:5000/getEmail?email=${email}`)
+    fetch(`https://boiling-crag-65640.herokuapp.com/getEmail?email=${email}`)
       .then(res => res.json())
       .then(data => setUser(data))
   }, [email])

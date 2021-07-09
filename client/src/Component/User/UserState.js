@@ -15,7 +15,7 @@ export const checkoutInDb = (cart, email) => {
     cart: cart,
     email: email
   };
-  fetch(`http://localhost:5000/checkout`, {
+  fetch(`https://boiling-crag-65640.herokuapp.com/checkout`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userCart)
