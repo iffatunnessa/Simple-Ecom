@@ -102,6 +102,12 @@ client.connect(err => {
                 res.send(newItems);
             })
     })
+    app.get('/itemList', (req, res) => {
+        productCollection.find()
+          .toArray((err, items) => {
+            res.send(items);
+          })
+      })
 
     app.post('/admin', (req, res) => {
         adminCollection.find({ adminEmail: req.body.email })
@@ -127,7 +133,7 @@ client.connect(err => {
     })
 
     app.get('/getCheckout', (req, res) => {
-        cartCollection.find({ email: req.query.email })
+        checkCollection.find({ email: req.query.email })
             .toArray((err, item) => {
                 res.send(item);
             })
@@ -145,6 +151,16 @@ client.connect(err => {
                 console.log(items)
             })
     })
+    app.patch('/updateItemList/:id', (req, res) => {
+        productCollection.updateOne({ _id: ObjectID(req.params.id) },
+          {
+            $set: { availableQuantity: req.body.newValue }
+          })
+          .then(items => {
+            res.send(items);
+            console.log(items)
+          })
+      })
     //delete 
     app.delete('/deleteCart', (req, res) => {
         console.log(req.query.email)

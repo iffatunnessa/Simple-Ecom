@@ -9,7 +9,7 @@ const AllProducts = () => {
     const [itemList, setItemList] = useState([]);
     const admin = useRecoilValue(isAdmin);
     useEffect(() => {
-        fetch(`http://localhost:5000/itemList`)
+        fetch(`https://boiling-crag-65640.herokuapp.com/itemList`)
             .then(res => res.json())
             .then(data => setItemList(data))
     }, [])

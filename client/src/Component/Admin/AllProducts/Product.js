@@ -6,7 +6,7 @@ const Product = ({product}) => {
     const quantityUpdate =(e)=>{
         console.log(availableQuantity, e.target.value);
         const newValue = e.target.value;
-        fetch(`http://localhost:5000/updateItemList/${_id}`, {
+        fetch(`https://boiling-crag-65640.herokuapp.com/updateItemList/${_id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ newValue })
