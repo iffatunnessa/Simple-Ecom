@@ -29,7 +29,7 @@ const LoginWithOther = () => {
             const { displayName, email, photoURL } = user;
             const signedInUser = { displayName, email, photoURL };
             setLoggedInUser(signedInUser);
-            sessionStorage.setItem('token', signedInUser.email);
+            sessionStorage.setItem('token', user);
             history.replace(from);
         }).catch((error) => {
             const errorCode = error.code;

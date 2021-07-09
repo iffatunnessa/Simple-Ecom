@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { UserContext } from '../../App';
-import ItemCard from './ItemCard';
 import OrderMiddleManage from './OrderMiddleManage';
 import { isOrder, oldUserState } from './UserState';
 

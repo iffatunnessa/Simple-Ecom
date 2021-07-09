@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserFriends, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useRecoilValue } from 'recoil';
-import { isAdmin } from '../Admin/AdminState';
 
 const DashBoard = () => {
     return (

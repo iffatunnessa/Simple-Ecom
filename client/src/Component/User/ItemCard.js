@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import ItemIndividual from '../Items/ItemIndividual';
-import { isOrder } from './UserState';
 
 const ItemCard = ({ item }) => {
     const { product, quantity } = item;

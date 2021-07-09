@@ -1,5 +1,4 @@
 import React from 'react';
-import OrderUI from './OrderUI';
 
 const OrderIndividual = ({ item }) => {
     const { product, quantity } = item;

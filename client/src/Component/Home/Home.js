@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState} from 'recoil';
 import { UserContext } from '../../App';
 import { cartState } from '../Cart/CartState';
 import { oldUserState } from '../User/UserState';

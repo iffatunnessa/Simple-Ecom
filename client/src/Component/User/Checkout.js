@@ -1,6 +1,4 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { cartState } from '../Cart/CartState';
 
 const Checkout = ({ element }) => {
     const { product, quantity } = element;

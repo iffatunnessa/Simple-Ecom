@@ -7,7 +7,6 @@ import LoginWithOther from './LoginWithOther';
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { UserContext } from '../../App';
 import { useForm } from 'react-hook-form';
-import LoginForm from './LoginForm';
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);

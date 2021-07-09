@@ -34,6 +34,7 @@ const LoginForm = () => {
                 newUserInfo.isSignedIn = true;
                 setUser(newUserInfo);
                 setLoggedInUser(newUserInfo);
+                sessionStorage.setItem('token', user);
                 history.replace(from);
             })
             .catch((error) => {

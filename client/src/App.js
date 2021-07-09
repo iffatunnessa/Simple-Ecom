@@ -17,6 +17,10 @@ export const UserContext = createContext();
 
 function App() {
     const [loggedInUser, setLoggedInUser] = useState({});
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        if(user) setLoggedInUser(user);
+    }, [])
     return (
       <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
         <RecoilRoot>
