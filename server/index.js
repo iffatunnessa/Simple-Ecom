@@ -123,6 +123,13 @@ client.connect(err => {
             })
     })
 
+    app.get('/getCheckout', (req, res) => {
+        cartCollection.find({ email: req.query.email })
+            .toArray((err, item) => {
+                res.send(item);
+            })
+    })
+
     //update
     app.patch('/updateCart', (req, res) => {
         console.log(req.query.email, req.body.userCart.cart)

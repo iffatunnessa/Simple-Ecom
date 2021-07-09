@@ -12,7 +12,16 @@ module.exports = {
             '1/2': '50%',
             '3/4': '75%',
             'full': '100%',
-        }
+        },
+        container: {
+            padding: {
+              DEFAULT: '2rem',
+              sm: '2rem',
+              lg: '16rem',
+              xl: '25rem',
+              '2xl': '25rem',
+            },
+          },
     },
     colors: {
         transparent: 'transparent',

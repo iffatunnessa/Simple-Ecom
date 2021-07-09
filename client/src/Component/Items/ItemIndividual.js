@@ -45,9 +45,9 @@ const ItemIndividual = ({ item, isCart, quantityCart }) => {
     const handleQuantity = (e) => {
         const count = e.target.value;
         if (quantityCart) {
-            document.getElementById(_id).innerText = quantityCart;
+            document.getElementById(_id).value = quantityCart;
         } else {
-            document.getElementById(_id).innerText = quantity;
+            document.getElementById(_id).value = quantity;
         }
         if (count > -1 && count < 101) {
             setQuantityError('');
@@ -77,12 +77,16 @@ const ItemIndividual = ({ item, isCart, quantityCart }) => {
                         <p className="mt-2 text-gray-500">{details}</p>
                     }
                     <h1 className="text-lg py-4 font-semibold">${price}</h1>
-                    <div>
-                        <button className="font-bold bg-gray-100 rounded h-8 w-8 mr-4 hover:bg-gray-300 " onClick={() => increment(isCart ? quantityFromCart : quantity)}>+</button>
-                        <input type='text' className="border border-color-grey p-2 h-8 w-10 font-semibold" id={_id} onChange={() => handleQuantity}
-                            value={isCart ? quantityFromCart : quantity} />
-                        <button className="font-bold bg-gray-100 rounded h-8 w-8 py-1 ml-4 px-2 hover:bg-gray-300 " onClick={() => decrement(isCart ? quantityFromCart : quantity)}>-</button>
-                    </div>
+                    {
+                        loggedInUser.email &&
+                        <div>
+                            <button className="font-bold bg-gray-100 rounded h-8 w-8 mr-4 hover:bg-gray-300 " onClick={() => increment(isCart ? quantityFromCart : quantity)}>+</button>
+                            <input type='text' className="border border-color-grey p-2 h-8 w-10 font-semibold" id={_id} onChange={() => handleQuantity}
+                                value={isCart ? quantityFromCart : quantity} />
+                            <button className="font-bold bg-gray-100 rounded h-8 w-8 py-1 ml-4 px-2 hover:bg-gray-300 " onClick={() => decrement(isCart ? quantityFromCart : quantity)}>-</button>
+                        </div>
+                    }
+
                     <div >
                         <p className="p-4 text-red-500">{quantityError}</p>
                     </div>

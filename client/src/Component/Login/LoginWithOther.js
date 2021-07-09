@@ -13,7 +13,7 @@ if (!firebase.apps.length) {
     firebase.app();
 }
 
-const Login = () => {
+const LoginWithOther = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
@@ -29,7 +29,7 @@ const Login = () => {
             const { displayName, email, photoURL } = user;
             const signedInUser = { displayName, email, photoURL };
             setLoggedInUser(signedInUser);
-            setToken();
+            sessionStorage.setItem('token', signedInUser.email);
             history.replace(from);
         }).catch((error) => {
             const errorCode = error.code;
@@ -39,25 +39,12 @@ const Login = () => {
             console.log(errorCode, errorMessage, credential, email);
         });
     }
-    const setToken = () => {
-        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-           sessionStorage.setItem('token', idToken);
-        }).catch(function (error) {
-            // console.log(error)
-        });
-    }
-
     return (
         <div>
-
-            <div style={
-                {
-                    textAlign: 'center',
-                    marginTop: "100px"
-                }
-            }>
+            <hr/>
+            <div className="text-center">
                 <button onClick={handleGoogleSignIn}
-                    className="inline-block px-4 py-2 border border-2 rounded text-white bg-indigo-400 border-indigo hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
+                    className="inline-block mt-7 mb-20 px-4 py-2 border border-2 rounded text-white bg-indigo-400 border-indigo hover:border-transparent hover:text-indigo-500 hover:bg-white">
                     <FontAwesomeIcon icon={faGooglePlusG} />
                     Sign in with Google
                 </button>
@@ -66,4 +53,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginWithOther;

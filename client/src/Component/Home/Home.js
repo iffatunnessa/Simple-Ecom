@@ -17,9 +17,9 @@ const Home = () => {
   }, [email])
 
   return (
-    <>
-      <p className="center font-bold">Welcome!</p>
-    </>
+    <div>
+      <p className="text-center text-2xl font-bold my-20">Welcome!</p>
+    </div>
   );
 };
 
