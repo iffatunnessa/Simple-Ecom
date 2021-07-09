@@ -15,7 +15,7 @@ const Item = () => {
             .then(data => setItem(data))
     }, [category])
     return (
-        <div className="container">
+        <div className="container mx:xl">
             <div className="grid grid-col-3 grid-row-3 gap-2 ">
                 {
                     item.length === 0 && <div className="mt-40 text-center">
