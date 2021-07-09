@@ -99,7 +99,7 @@ module.exports = {
         gradientColorStops: ['responsive', 'dark', 'hover', 'focus'],
         grayscale: ['responsive'],
         gridAutoColumns: ['responsive'],
-        gridAutoFlow: ['responsive'],
+        gridAutoFlow: ['responsive','hover', 'focus'],
         gridAutoRows: ['responsive'],
         gridColumn: ['responsive'],
         gridColumnEnd: ['responsive'],

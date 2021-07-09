@@ -30,7 +30,7 @@ const UserCart = () => {
     const total = cartCalculation(cart);
     return (
         <>
-            <div className="grid grid-cols-4">
+            <div className="md:grid md:grid-cols-4">
                 <div className='col-span-2 p-6'>
                     {
                         cart.length > 0 &&

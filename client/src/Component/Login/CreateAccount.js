@@ -100,7 +100,7 @@ const CreateAccount = () => {
     }
     return (
         <div className="container">
-            <div className='px-44 py-5'>
+            <div className='lg:px-44 py-5'>
                 <div id='alert'>  {errorMessage && (
                     <p className="text-red-500"> {errorMessage} </p>
                 )}

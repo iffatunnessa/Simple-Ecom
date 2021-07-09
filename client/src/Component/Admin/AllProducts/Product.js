@@ -18,9 +18,9 @@ const Product = ({product}) => {
     return (
         <tbody>
         <tr className="grid grid-cols-4">
-            <td className="p-6 col-span-2">{productName}</td>
-            <td className="mx-12 p-6">{price}</td>
-            <td className="mx-12 p-6">{availableQuantity}<input onChange={quantityUpdate} placeholder="change quantity"/></td>
+            <td className="md:p-6 py-4 col-span-2">{productName}</td>
+            <td className="md:mx-12 py-4 text-center md:p-6">{price}</td>
+            <td className="md:mx-12 py-4 text-center md:p-6">{availableQuantity}<input className="w-12 mx-2 text-sm" onChange={quantityUpdate} placeholder="change"/></td>
         </tr>
     </tbody>
     );

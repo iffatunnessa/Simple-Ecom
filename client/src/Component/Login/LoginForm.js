@@ -45,7 +45,7 @@ const LoginForm = () => {
     }
     return (
         <div className="container">
-            <div className ='px-44 py-5'>
+            <div className ='lg:px-44 py-5'>
                 <h2 className="text-lg font-bold">Login</h2>
                 <form className="" onSubmit={handleSubmit(onSubmit)}>
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5" for="email">
@@ -68,6 +68,7 @@ const LoginForm = () => {
                         id="login-password-input"
                         type="password"
                         name="password"
+                        placeholder="password"
                         {...register("password")}
                     />
                     <button type='submit' className="bg-indigo-500 py-2 px-3 my-5 text-white hover:bg-white hover:text-indigo-500 border rounded" >Log In</button>

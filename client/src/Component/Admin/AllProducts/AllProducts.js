@@ -22,15 +22,15 @@ const AllProducts = () => {
             <AdminConfirm />
             {
                 admin ?
-                    <div className="grid grid-cols-4">
+                    <div className="md:grid md:grid-cols-4 sm:grid-flow-col">
                         <DashBoard />
                         <div className="p-5 col-span-3">
                             <table>
                                 <thead>
                                     <tr className="grid grid-cols-4">
-                                        <th className="mt-6 col-span-2">Product</th>
-                                        <th className="mt-6">Price</th>
-                                        <th className="mt-6">Quantity</th>
+                                        <th className="md:mt-6 col-span-2">Product</th>
+                                        <th className="md:mt-6">Price</th>
+                                        <th className="md:mt-6">Quantity</th>
                                     </tr>
                                 </thead>
                                 {

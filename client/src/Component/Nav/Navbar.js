@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,7 +19,7 @@ const Navbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const { photoURL, email } = loggedInUser;
     const cart = useRecoilValue(cartState);
-
+    const [toggle, setToggle] = useState(true);
     const handleSignOut = () => {
         firebase.auth().signOut().then(() => {
             setLoggedInUser('');
@@ -27,18 +27,27 @@ const Navbar = () => {
             // An error happened.
         });
     }
+    const toggleHandle = () => {
+        if (toggle) {
+            setToggle(!toggle)
+            document.getElementById('nav-section').style.display = "none";
+        }else{
+            setToggle(!toggle)
+            document.getElementById('nav-section').style.display = "block";
+        }
+    }
     return (
         <nav className="flex items-center justify-between flex-wrap bg-indigo-500 p-3">
             <div className="flex items-center flex-shrink-0 text-white mr-6 px-6">
                 <Link className="font-semibold text-xl tracking-tight" to="/home">Twurs Tech Shop</Link>
             </div>
             <div className="block lg:hidden">
-                <button className="flex items-center px-3 py-2 border rounded  hover:text-white hover:border-white">
+                <button onClick={toggleHandle} className="flex items-center px-3 py-2 border rounded hover:text-white hover:border-white">
                     <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
                 </button>
             </div>
-            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <div id="nav-section" className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                 <div className="items-center lg:flex-grow">
                     <Link to="/home" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:bg-indigo-300 px-3 py-1 rounded mr-4">
                         Home
@@ -68,9 +77,9 @@ const Navbar = () => {
                                 {
                                     cart.length > 0 &&
                                     <span className="animate-ping absolute inline-flex h-6 w-7 rounded-full bg-purple-400 opacity-75"></span>
-                              
+
                                 }
-                                 <FontAwesomeIcon icon={faShoppingCart} />
+                                <FontAwesomeIcon icon={faShoppingCart} />
                                 <span className="relative inline-flex rounded-full h-4 w-4 bg-red-400 text-xs">
                                     <span className='px-1'>{cart.length}</span>
                                 </span>

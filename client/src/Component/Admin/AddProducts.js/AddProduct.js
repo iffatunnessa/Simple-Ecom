@@ -43,7 +43,7 @@ const AddProduct = () => {
             <AdminConfirm />
             {
                 admin ?
-                    <div className="grid grid-cols-4">
+                    <div className="md:grid md:grid-cols-4 sm:grid-flow-col">
                         <DashBoard />
                         <div className="p-5 col-span-3">
                             <p className="text-green-400">You're an admin</p>
