@@ -15,7 +15,7 @@ if (!firebase.apps.length) {
 const LoginForm = () => {
     const { register, handleSubmit } = useForm();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    
+
     const history = useHistory();
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
@@ -44,39 +44,40 @@ const LoginForm = () => {
     }
     return (
         <div className="container">
-            <h2 className="text-lg font-bold">Login</h2>
-            <form className="" onSubmit={handleSubmit(onSubmit)}>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5" for="email">
-                    Email
-                </label>
-                <input
-                    className="border border-1 w-full px-2 py-3 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
-                    id="email"
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="example@example.com"
-                    {...register("email")}
-                />
-
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5 " for="password">
-                    Password
-                </label>
-                <input
-                    className="border border-1 w-full px-2 py-3 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
-                    id="login-password-input"
-                    type="password"
-                    name="password"
-                    {...register("password")}
-                />
-                <button type='submit' className="bg-indigo-500 py-2 px-3 my-5 text-white hover:bg-white hover:text-indigo-500 border rounded" >Log In</button>
-            </form>
-            {loginErrorMessage && (
-                <p className=""> {loginErrorMessage} </p>
-            )}
-            <p>Don't have an account? <Link to="/createNewAccount"className="text-red-600 capitalize">Create New Account</Link>
-            </p>
-            <LoginWithOther />
+            <div className ='px-44 py-5'>
+                <h2 className="text-lg font-bold">Login</h2>
+                <form className="" onSubmit={handleSubmit(onSubmit)}>
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5" for="email">
+                        Email
+                    </label>
+                    <input
+                        className="border border-1 w-full px-2 py-3 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                        id="email"
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="example@example.com"
+                        {...register("email")}
+                    />
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5 " for="password">
+                        Password
+                    </label>
+                    <input
+                        className="border border-1 w-full px-2 py-3 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                        id="login-password-input"
+                        type="password"
+                        name="password"
+                        {...register("password")}
+                    />
+                    <button type='submit' className="bg-indigo-500 py-2 px-3 my-5 text-white hover:bg-white hover:text-indigo-500 border rounded" >Log In</button>
+                </form>
+                {loginErrorMessage && (
+                    <p className=""> {loginErrorMessage} </p>
+                )}
+                <p>Don't have an account? <Link to="/createNewAccount" className="text-red-600 capitalize">Create New Account</Link>
+                </p>
+                <LoginWithOther />
+            </div>
         </div>
     );
 };
