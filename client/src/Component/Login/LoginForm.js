@@ -34,7 +34,7 @@ const LoginForm = () => {
                 newUserInfo.isSignedIn = true;
                 setUser(newUserInfo);
                 setLoggedInUser(newUserInfo);
-                sessionStorage.setItem('token', user);
+                storeToken();
                 history.replace(from);
             })
             .catch((error) => {
@@ -43,9 +43,16 @@ const LoginForm = () => {
                 setLoginErrorMessage(error.message);
             });
     }
+    const storeToken = () => {
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+            sessionStorage.setItem('token', idToken);
+        }).catch(function (error) {
+            // Handle error
+        });
+    }
     return (
         <div className="container">
-            <div className ='lg:px-44 py-5'>
+            <div className='lg:px-44 py-5'>
                 <h2 className="text-lg font-bold">Login</h2>
                 <form className="" onSubmit={handleSubmit(onSubmit)}>
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold my-5" for="email">
