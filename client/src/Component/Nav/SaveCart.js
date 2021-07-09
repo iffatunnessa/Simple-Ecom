@@ -30,6 +30,9 @@ const SaveCart = () => {
                     <button onClick={() => saveToDatabase(cart, email)} className="bg-indigo-600 p-3 mx-3 rounded text-white hover:bg-indigo-500">
                         Save Cart
                     </button>
+                    <Link className="bg-purple-500 p-3 mx-3 rounded text-white hover:bg-purple-400" to="/orders">
+                        Orders
+                    </Link>
                 </>
             }
         </div>

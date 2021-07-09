@@ -27,7 +27,6 @@ const UserCart = () => {
         document.getElementById('successMsg').innerText = "Your order is placed!"
         deleteCartFromDb();
     }
-
     const total = cartCalculation(cart);
     return (
         <>

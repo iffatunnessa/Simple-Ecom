@@ -5,6 +5,11 @@ export const oldUserState = atom({
   default: [],
 });
 
+export const isOrder = atom({
+  key: 'isOrder',
+  default: false,
+});
+
 export const checkoutInDb = (cart, email) => {
   const userCart = {
     cart: cart,
