@@ -29,7 +29,7 @@ const LoginWithOther = () => {
             const { displayName, email, photoURL } = user;
             const signedInUser = { displayName, email, photoURL };
             setLoggedInUser(signedInUser);
-            sessionStorage.setItem('token', user);
+            storeToken();
             history.replace(from);
         }).catch((error) => {
             const errorCode = error.code;
@@ -39,9 +39,16 @@ const LoginWithOther = () => {
             console.log(errorCode, errorMessage, credential, email);
         });
     }
+    const storeToken = () => {
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+            sessionStorage.setItem('token', idToken);
+        }).catch(function (error) {
+            // Handle error
+        });
+    }
     return (
         <div>
-            <hr/>
+            <hr />
             <div className="text-center">
                 <button onClick={handleGoogleSignIn}
                     className="inline-block mt-7 mb-20 px-4 py-2 border border-2 rounded text-white bg-indigo-400 border-indigo hover:border-transparent hover:text-indigo-500 hover:bg-white">
