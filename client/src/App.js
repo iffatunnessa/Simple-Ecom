@@ -12,6 +12,7 @@ import SaveCart from "./Component/Nav/SaveCart";
 import CreateAccount from "./Component/Login/CreateAccount";
 import LoginForm from "./Component/Login/LoginForm";
 import Orders from "./Component/User/Orders";
+import AllProducts from "./Component/Admin/AllProducts/AllProducts";
 
 export const UserContext = createContext();
 
@@ -39,6 +40,9 @@ function App() {
                         </Route>
                         <PrivateRoute path='/addAdmin'>
                             <AddAdmin />
+                        </PrivateRoute>
+                        <PrivateRoute path='/allProducts'>
+                            <AllProducts />
                         </PrivateRoute>
                         <PrivateRoute path='/orders'>
                             <Orders />

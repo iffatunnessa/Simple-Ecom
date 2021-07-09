@@ -6,7 +6,7 @@ import { oldUserState } from '../User/UserState';
 
 const ItemIndividual = ({ item, isCart, quantityCart }) => {
     const user = useRecoilValue(oldUserState);
-    const { productName, price, details, imageFile, _id } = item;
+    const { productName, price, details, imageFile, availableQuantity, _id } = item;
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [cart, setCart] = useRecoilState(cartState);
     const [quantityError, setQuantityError] = useState('');
@@ -70,7 +70,7 @@ const ItemIndividual = ({ item, isCart, quantityCart }) => {
                         <img className="h-44 p-4 w-44 center object-cover md:w-44" src={`data:image/jpeg;base64,${imageFile.img}`} alt="Product" />
                     </div>
                 }
-                <div className="p-8">
+                <div className="p-5">
                     <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{productName}</div>
                     {
                         !isCart &&
@@ -84,6 +84,11 @@ const ItemIndividual = ({ item, isCart, quantityCart }) => {
                             <input type='text' className="border border-color-grey p-2 h-8 w-10 font-semibold" id={_id} onChange={() => handleQuantity}
                                 value={isCart ? quantityFromCart : quantity} />
                             <button className="font-bold bg-gray-100 rounded h-8 w-8 py-1 ml-4 px-2 hover:bg-gray-300 " onClick={() => decrement(isCart ? quantityFromCart : quantity)}>-</button>
+                            {
+                                availableQuantity > 0 ? <p className="py-6 text-green-500">{availableQuantity} products are available.</p>
+                            : <p className="py-6 text-yellow-500 font-bold">Currently not available!</p>
+                            }
+                            
                         </div>
                     }
 

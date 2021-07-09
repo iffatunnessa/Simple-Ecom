@@ -100,7 +100,7 @@ const AddProduct = () => {
                         </div>
                     </div>
                     : <div>
-                        <p className="text-red-400 center">You're not an Admin</p>
+                        <p className="text-red-400 text-center">You're not an Admin</p>
                     </div>
             }
         </>
