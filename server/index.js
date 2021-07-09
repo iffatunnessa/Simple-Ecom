@@ -16,6 +16,9 @@ app.use(bodyParser.json());
 app.use(express.static('productImage'))
 app.use(fileUpload())
 
+app.get('/', (req, res) => {
+   res.send("server is working");
+})
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ew9hc.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
